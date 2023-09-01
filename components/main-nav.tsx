@@ -1,11 +1,11 @@
 "use client";
 
-import { cn } from "@/lib/utils";
-import Link from "next/link";
+import Link from "next/link"
 import { useParams, usePathname } from "next/navigation";
-import React from "react";
 
-export default function MainNav({
+import { cn } from "@/lib/utils"
+
+export function MainNav({
   className,
   ...props
 }: React.HTMLAttributes<HTMLElement>) {
@@ -15,17 +15,17 @@ export default function MainNav({
   const routes = [
     {
       href: `/${params.storeId}`,
-      label: "Overview",
+      label: 'Overview',
       active: pathname === `/${params.storeId}`,
     },
     {
       href: `/${params.storeId}/billboards`,
-      label: "Billboards",
+      label: 'Billboards',
       active: pathname === `/${params.storeId}/billboards`,
     },
     {
       href: `/${params.storeId}/categories`,
-      label: "Categories",
+      label: 'Categories',
       active: pathname === `/${params.storeId}/categories`,
     },
     {
@@ -50,27 +50,28 @@ export default function MainNav({
     },
     {
       href: `/${params.storeId}/settings`,
-      label: "Settings",
+      label: 'Settings',
       active: pathname === `/${params.storeId}/settings`,
     },
-  ];
+  ]
 
   return (
-    <nav className={cn("flex items-center space-x-4 lg:space-x-6", className)}>
+    <nav
+      className={cn("flex items-center space-x-4 lg:space-x-6", className)}
+      {...props}
+    >
       {routes.map((route) => (
         <Link
           key={route.href}
           href={route.href}
           className={cn(
-            "text-sm font-medium transition-colors hover:text-primary",
-            route.active
-              ? "text-black dark:text-white "
-              : "text-muted-foreground"
+            'text-sm font-medium transition-colors hover:text-primary',
+            route.active ? 'text-black dark:text-white' : 'text-muted-foreground'
           )}
         >
           {route.label}
-        </Link>
+      </Link>
       ))}
     </nav>
-  );
-}
+  )
+};
